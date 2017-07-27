@@ -1,0 +1,45 @@
+{
+    "name": "kisztof/notification-bundle",
+    "description": "Bundle for asynchronous notifications from backend",
+    "type": "symfony-bundle",
+    "homepage": "http://github.com/kisztof",
+    "authors": [
+        {
+          "name": "Krzysztof Słomka",
+          "email": "kisztof@gmail.com"
+        }
+    ],
+    "keywords": [
+        "notification bundle",
+        "rabbitmq",
+        "asynchronous mesages",
+        "symfony2"
+    ],
+    "license": [
+        "MIT"
+    ],
+    "require": {
+        "php": ">=7.-",
+        "symfony/framework-bundle": "~2.3|~3.0",
+        "php-amqplib/rabbitmq-bundle": "~1.6"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "2.*",
+        "phpmd/phpmd" : "@stable",
+        "sebastian/phpcpd": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "KisztoF\\NotificationBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "master"
+        }
+    },
+    "target-dir": "KisztoF/NotificationBundle"
+}

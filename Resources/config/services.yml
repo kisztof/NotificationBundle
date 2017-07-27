@@ -1,0 +1,20 @@
+parameters:
+    kisztof_notification.feeder.push_notification_feeder.class: KisztoF\NotificationBundle\Feeder\PushNotificationFeeder
+    kisztof_notification.event_listener.push_notification_produce_listener.class: KisztoF\NotificationBundle\EventListener\PushNotificationProduceListener
+
+services:
+    kisztof_notification.feeder.push_notification_feeder:
+        class: '%kisztof_notification.feeder.push_notification_feeder.class%'
+        arguments:
+            - '@old_sound_rabbit_mq.kisztof_notification_send_push_producer'
+        calls:
+            - [setLogger, ['@logger']]
+        tags:
+            - { name: monolog.logger, channel: '%kisztof_notification.monolog.channel%' }
+
+    kisztof_notification.event_listener.push_notification_produce_listener:
+        class: '%kisztof_notification.event_listener.push_notification_produce_listener.class%'
+        arguments:
+            - '@kisztof_notification.feeder.push_notification_feeder'
+        tags:
+            - { name: kernel.event_listener, event: kisztof_notification.event.feed_push_notification, method: produceNotifications }
